@@ -5,6 +5,7 @@ new Vue({
     },
     methods: {
         mudaValor(){
+            //Retorna o valor
             return this.valor
         }
     },
