@@ -1,0 +1,70 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<div id="app">
+  <p>{{contador}}</p>
+  <button v-on:click="somar(5, $event)">Somar + 1</button>
+  <p v-on:mousemove="atualizarXeY">
+    Mouse: {{x}} e {{y}}
+    <span v-on:mousemove.stop="">PARAR AQUI!!!</span>
+  </p>
+  <a v-on:click.prevent="naoNavegar" href="http://google.com">Google</a>
+  <hr>
+  <input type="text" v-on:keyup.enter.alt="exibirAlerta" />
+  <hr />
+  <p id="versao">Versão {{versao}}</p>
+</div>
+
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      versao: 5,
+      contador: 0,
+      x: 0,
+      y: 0,
+    },
+    methods: {
+      somar(passo, ev) {
+        console.log(passo, ev);
+        this.contador += passo;
+      },
+      atualizarXeY(e) {
+        this.x = e.clientX;
+        this.y = e.clientY;
+      },
+      naoNavegar(event) {
+        console.log("Não navegar");
+        //event.preventDefault();
+      },
+      exibirAlerta() {
+        alert("Estou te alertando");
+      },
+      // parar(e) {
+      //   e.stopPropagation();
+      // },
+    },
+  });
+</script>
+
+<style>
+  body {
+    margin: 0 auto;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  p {
+    background-color: rgb(211, 254, 255);
+    padding: 10px;
+  }
+
+  #app {
+    padding: 25px;
+  }
+
+  #versao {
+    background-color: dimgrey;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 10px;
+    text-align: center;
+  }
+</style>
