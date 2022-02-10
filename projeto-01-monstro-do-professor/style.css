@@ -38,8 +38,6 @@ html {
     width: 80%;
     height: 20px;
     border: 1px solid #AAA;
-    border-radius: 25px;
-    margin-bottom: 25px;
 }
 
 .life-bar .life {
@@ -47,12 +45,10 @@ html {
     justify-content: center;
     height: 100%;
     background-color: green;
-    border-radius: 25px;
 }
 
 .life-bar .life.danger {
     background-color: red;
-    border-radius: 25px;
 }
 
 /* Área do Resultado */
@@ -85,6 +81,10 @@ html {
     border-radius: 5px;
     text-transform: uppercase;
     font-size: 1.1rem;
+}
+
+.acabou-a-cura {
+    display: none;
 }
 
 .new-game {
@@ -141,22 +141,4 @@ html {
 .monster {
     background-color: #e51c23aa;
     color: #fff;
-}
-
-ul li{
-    display: inline;
-    list-style: none;
-}
-
-.cura-ataque {
-    background: rgb(240, 233, 233);
-    display: flex;
-    justify-content: space-between;
-    margin-top: 5px;
-    border-radius: 10px;
-}
-
-.cura-ataque ul {
-    padding-left: 5px;
-    padding-right: 5px;
 }

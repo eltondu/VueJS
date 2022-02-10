@@ -4,11 +4,7 @@ new Vue({
         running: false,
         playerLife: 100,
         monsterLife: 100,
-        logs: [],
-        cura: 3,
-        ataqueEspecial: 3,
-        arrayHealth: [1, 2, 3],
-        arrayAtack: [1, 2, 3],
+        logs: []
     },
     computed: {
         hasResult() {
@@ -16,33 +12,17 @@ new Vue({
         }
     },
     methods: {
-
         startGame() {
             this.running = true
             this.playerLife = 100
             this.monsterLife = 100
-            this.cura = 3
-            this.ataqueEspecial = 3
             this.logs = []
-            this.arrayHealth = [1, 2, 3]
-            this.arrayAtack = [1, 2, 3]
         },
         attack(especial) {
-            if (especial == true) {
-                this.ataqueEspecial = this.ataqueEspecial - 1
-                this.deleteAtack()
-            }
-            if (this.ataqueEspecial > 1) {
-                this.hurt('monsterLife', 5, 10, especial, 'Jogador', 'Monstro', 'player')
-            } else {
-                this.hurt('monsterLife', 5, 10, false, 'Jogador', 'Monstro', 'player')
-            }
+            this.hurt('monsterLife', 5, 10, especial, 'Jogador', 'Monstro', 'player')
             if (this.monsterLife > 0) {
                 this.hurt('playerLife', 7, 12, false, 'Monstro', 'Jogador', 'monster')
             }
-            console.log("Ataque Especial", this.ataqueEspecial);
-            console.log("Cura", this.cura);
-            console.log("Especial", especial);
         },
         hurt(prop, min, max, especial, source, target, cls) {
             const plus = especial ? 5 : 0
@@ -51,24 +31,13 @@ new Vue({
             this.registerLog(`${source} atingiu ${target} com ${hurt}.`, cls)
         },
         healAndHurt() {
-            if (this.cura > 0) {
-                this.heal(10, 15)
-                this.hurt('playerLife', 7, 12, false, 'Monstro', 'Jogador', 'monster')
-            }
+            this.heal(10, 15)
+            this.hurt('playerLife', 7, 12, false, 'Monstro', 'Jogador', 'monster')
         },
         heal(min, max) {
             const heal = this.getRandom(min, max)
             this.playerLife = Math.min(this.playerLife + heal, 100)
             this.registerLog(`Jogador ganhou força de ${heal}.`, 'player')
-            this.cura = this.cura - 1
-            this.arrayHealth - 1
-            this.deleteHealth()
-        },
-        deleteHealth(item) {
-            this.arrayHealth.splice(this.arrayHealth.indexOf(item), 1);
-        },
-        deleteAtack(item) {
-            this.arrayAtack.splice(this.arrayAtack.indexOf(item), 1);
         },
         getRandom(min, max) {
             const value = Math.random() * (max - min) + min
@@ -83,5 +52,4 @@ new Vue({
             if (value) this.running = false
         }
     }
-
 })
