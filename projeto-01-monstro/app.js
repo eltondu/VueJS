@@ -9,6 +9,8 @@ new Vue({
         ataqueEspecial: 3,
         arrayHealth: [1, 2, 3],
         arrayAtack: [1, 2, 3],
+        nomeHeroi: 'Herói',
+        nomeMonstro: 'Monstro',
     },
     computed: {
         hasResult() {
@@ -40,9 +42,6 @@ new Vue({
             if (this.monsterLife > 0) {
                 this.hurt('playerLife', 7, 12, false, 'Monstro', 'Jogador', 'monster')
             }
-            console.log("Ataque Especial", this.ataqueEspecial);
-            console.log("Cura", this.cura);
-            console.log("Especial", especial);
         },
         hurt(prop, min, max, especial, source, target, cls) {
             const plus = especial ? 5 : 0
